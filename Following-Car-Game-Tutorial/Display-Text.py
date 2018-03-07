@@ -39,6 +39,7 @@ def car(x,y):
 #create fonts
 def text_objects(text,font):
 	textSurface = font.render(text, True, black)
+	#get the rectangle to use as a reference
 	return textSurface , textSurface.get_rect()
 
 #display the text
@@ -56,8 +57,13 @@ def message_display(text):
 	#update display
 	pygame.display.update()
 
+	#display message for 2 seconds
 	time.sleep(2)
+	
 
+#make the crash function
+def crash():
+	message_display('You Crashed')
 	game_loop()
 
 #make main game loop
@@ -82,7 +88,9 @@ def game_loop():
 
 			#if user exits window
 			if event.type == pygame.QUIT:
-				crashed = True
+				#quit game
+				pygame.quit()
+				quit()
 			#print out user actions
 			print(event)
 
@@ -112,7 +120,7 @@ def game_loop():
 
 		#check if car has hit edge of window
 		if x > display_width - car_width or x <0:
-			gameExit = True
+			crash()
 
 		#update display
 		pygame.display.update()
