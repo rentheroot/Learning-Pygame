@@ -40,6 +40,12 @@ def car(x,y):
 x = (display_width * 0.45)
 y = (display_height * 0.8)
 
+#define x_change
+x_change = 0
+
+#define car speed
+car_speed = 0
+
 
 #run until game crashes
 while not crashed:
@@ -47,11 +53,31 @@ while not crashed:
 
 	#log game events
 	for event in pygame.event.get():
+
 		#if user exits window
 		if event.type == pygame.QUIT:
 			crashed = True
 		#print out user actions
 		print(event)
+
+		#move the car
+		#check for keydown event
+		if event.type == pygame.KEYDOWN:
+			#check if left arrow key
+			if event.key == pygame.K_LEFT:
+				#change x variable by -5
+				x_change = -5
+			#check if right arrow key
+			elif event.key == pygame.K_RIGHT:
+				#change x variable by 5
+				x_change = 5
+			#check if key is released
+		if event.type == pygame.KEYUP:
+			if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+				#make x variable 0
+				x_change = 0
+	#move car along x axis
+	x += x_change
 
 	#make everything currently in the game white
 	gameDisplay.fill(white)
