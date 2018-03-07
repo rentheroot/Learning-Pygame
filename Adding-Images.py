@@ -1,14 +1,17 @@
 #learning to use pygame
-#following this tutorial: https://pythonprogramming.net/pygame-python-3-part-1-intro/
+#following this tutorial: https://pythonprogramming.net/displaying-images-pygame/?completed=/pygame-python-3-part-1-intro/
 
 #imports
 import pygame
 
-#initialize pygame so I can use it, necessary for every program using pygame
+#start pygame
 pygame.init()
 
-#make the display/canvas that pygame will draw on
-#makes the display 800px wide and 60 px tall
+#store width and height vars
+display_width = 800
+display_height = 600
+
+#init display
 gameDisplay = pygame.display.set_mode((800,600))
 
 #name the window
