@@ -12,44 +12,60 @@ display_width = 800
 display_height = 600
 
 #init display
-gameDisplay = pygame.display.set_mode((800,600))
+gameDisplay = pygame.display.set_mode((display_width,display_height))
 
-#name the window
-#names the window "A bit Racey"
+#name window
 pygame.display.set_caption('A bit Racey')
 
+#define rgb colors
+black = (0,0,0)
+white = (255,255,255)
+
+
 #set the game's clock
-#the clock tracks time in the game, mostly used for FPS
-#generally isn't good form to use fps to speed up a game; wasted processing power
 clock = pygame.time.Clock()
 
-#tell the computer that the game has not crashed
+#game not crashed
 crashed = False
 
-#main game loop
-#run until game crashes (user exits out of window)
+#load the car image
+carImg = pygame.image.load('racecar.png')
+
+#function to place car on display
+#blit draws car to screen
+def car(x,y):
+	gameDisplay.blit(carImg, (x,y))
+
+#define x and y for car
+x = (display_width * 0.45)
+y = (display_height * 0.8)
+
+
+#run until game crashes
 while not crashed:
 
 
-	#contantly log events within the game
+	#log game events
 	for event in pygame.event.get():
 		#if user exits window
 		if event.type == pygame.QUIT:
-			#tell pygame the game has crashed
 			crashed = True
-
-		#print out everything done by user in pygame
+		#print out user actions
 		print(event)
 
-	#display.update used to update specific areas of screen
-	#display.flip updates entirety of screen
+	#make everything currently in the game white
+	gameDisplay.fill(white)
+
+	#put car in postition
+	car(x,y)
+
+	#update display
 	pygame.display.update()
 
-	#run the game at 60 fps
+	#run at 60 fps
 	clock.tick(60)
 
-#when while loop is broken (game crashes), Quit
-#quit pygame
+
+#quit game
 pygame.quit()
-#quit python
 quit()
