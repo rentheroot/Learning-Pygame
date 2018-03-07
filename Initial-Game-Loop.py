@@ -1,4 +1,5 @@
 #learning to use pygame
+#following this tutorial: https://pythonprogramming.net/pygame-python-3-part-1-intro/
 
 #imports
 import pygame
