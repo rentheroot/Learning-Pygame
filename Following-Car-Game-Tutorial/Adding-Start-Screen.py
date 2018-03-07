@@ -80,6 +80,26 @@ def crash():
 	message_display('You Crashed')
 	game_loop()
 
+#Add in a start screen
+def game_intro():
+
+	intro = True
+
+	while intro:
+		for event in pygame.event.get():
+			print(event)
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				quit()
+
+		#make intro screen white
+		gameDisplay.fill(white)
+		largeText = pygame.font.Font('freesansbold.ttf',115)
+		TextSurf,TextRect = text_objects("A bit Racey", largeText)
+		TextRect.center = ((display_width/2),(display_height/2))
+		gameDisplay.blit(TextSurf,TextRect)
+		pygame.display.update()
+		clock.tick(15)
 
 #make main game loop
 def game_loop():
@@ -190,6 +210,8 @@ def game_loop():
 		#run at 60 fps
 		clock.tick(60)
 
+#run the intro
+game_intro()
 #run main game loop
 game_loop()
 #quit game

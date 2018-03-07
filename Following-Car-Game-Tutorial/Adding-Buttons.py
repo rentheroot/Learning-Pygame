@@ -18,6 +18,8 @@ black = (0,0,0)
 white = (255,255,255)
 red = (255,0,0)
 block_color = (53,115,255)
+green = (0,128,0)
+red = (255,0,0)
 
 #tell program where right side of car is
 car_width = 73
@@ -80,6 +82,33 @@ def crash():
 	message_display('You Crashed')
 	game_loop()
 
+#Add in a start screen
+def game_intro():
+
+	intro = True
+
+	while intro:
+		for event in pygame.event.get():
+			print(event)
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				quit()
+
+		#make intro screen white
+		gameDisplay.fill(white)
+
+		#display text
+		largeText = pygame.font.Font('freesansbold.ttf',115)
+		TextSurf,TextRect = text_objects("A bit Racey", largeText)
+		TextRect.center = ((display_width/2),(display_height/2))
+		gameDisplay.blit(TextSurf,TextRect)
+		
+		#draw rectangles
+		pygame.draw.rect(gameDisplay, green,(150,450,100,50))
+		pygame.draw.rect(gameDisplay, red,(550,450,100,50))
+		#update display
+		pygame.display.update()
+		clock.tick(15)
 
 #make main game loop
 def game_loop():
@@ -190,6 +219,8 @@ def game_loop():
 		#run at 60 fps
 		clock.tick(60)
 
+#run the intro
+game_intro()
 #run main game loop
 game_loop()
 #quit game
