@@ -136,15 +136,17 @@ def coordinate_grid(display_width,display_increment,display_height,black):
 	return(full_coordinates)
 
 
-
 #main game loop
 def main_loop(display_width,display_increment,display_height, black):
 	
+	#set counter
 	counter = []
 	#game is not crashed
 	crashed = False
 	#setup the clock
 	clock = pygame.time.Clock()
+	#store lines drawn
+	lines_drawn = []
 
 
 	#set up coordinate grid
@@ -171,6 +173,8 @@ def main_loop(display_width,display_increment,display_height, black):
 					if (len(counter) % 2) == 0:
 						print(counter[0], ',', counter[1] )
 						pygame.draw.line(gameDisplay,red,(counter[0]), (counter[1]),2)
+						lines_drawn.append(counter[0])
+						lines_drawn.append(counter[1])
 						counter = []
 
 				if clickRed == 1:
@@ -182,10 +186,58 @@ def main_loop(display_width,display_increment,display_height, black):
 						print(counter[0], ',', counter[1] )
 						
 						pygame.draw.line(gameDisplay,red,(counter[0]), (counter[1]),2)
+						lines_drawn.append(counter[0])
+						lines_drawn.append(counter[1])
 						counter = []
 
 
+			if event.type == pygame.KEYDOWN:
+				#check if r key pressed
+				if event.key == pygame.K_r:
 
+					#ask input
+					display_increment2 = int(input("increment of pixels"))
+
+					#redraw the board with different grid size
+					gameDisplay.fill(white)
+
+					#redraw lines
+					new_lines = []
+
+					for coordinate in lines_drawn:
+
+						new_lines.append(coordinate)
+
+						if len(new_lines) % 2 == 0:
+							pygame.draw.line(gameDisplay,red,new_lines[0], new_lines[1],2)
+							new_lines = []
+
+
+					#redraw coordinate grid
+					full_coordinates =coordinate_grid(display_width,display_increment2,display_height,black)
+					display_increment = display_increment2
+
+			if event.type == pygame.KEYDOWN:
+				#check if d key pressed
+				if event.key == pygame.K_d:
+					#delete last line made
+					lines_drawn = lines_drawn[:-2]
+
+					#redraw the board with different grid size
+					gameDisplay.fill(white)
+
+					#redraw lines
+					new_lines = []
+
+					for coordinate in lines_drawn:
+
+						new_lines.append(coordinate)
+
+						if len(new_lines) % 2 == 0:
+							pygame.draw.line(gameDisplay,red,new_lines[0], new_lines[1],2)
+							new_lines = []
+					#redraw coordinate grid
+					full_coordinates =coordinate_grid(display_width,display_increment,display_height,black)
 
 			#display updates
 			pygame.display.update()
