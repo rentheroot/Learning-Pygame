@@ -10,8 +10,8 @@ def pygame_setup():
 	pygame.init()
 
 	#store width and height vars
-	display_height = 800
-	display_width = 800
+	display_height = 600
+	display_width = 600
 
 	#active tic tac toe area will have 700 x 700
 
@@ -23,7 +23,12 @@ def pygame_setup():
 
 #draw tic tac toe board
 def tic_tac_board():
-	pass
+	tic_tac_counter = 0
+	tic_tac_list = []
+	board_points = [(225,75),(225,525),(375,75),(375,525),(75,225),(525,225),(75,375),(525,375)]
+	for coordinate in board_points:
+		tic_tac_list.append(coordinate)
+
 #main game loop
 def main_loop():
 	
