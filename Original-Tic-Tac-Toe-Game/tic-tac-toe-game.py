@@ -45,6 +45,7 @@ def button(x,y,w,h,ic,action=None):
 		pygame.draw.rect(gameDisplay, ic, (x,y,w,h),1)
 
 
+
 #main game loop
 def main_loop():
 	
@@ -73,10 +74,9 @@ def main_loop():
 				tic_tac_list = []
 		
 		#draw squares
-
+		position = 0
 		for coordinate in corner_points:
-
-			#pygame.draw.rect(gameDisplay,red,((coordinate[0] + 6),coordinate[1]+6,140,140))
+			#pygame.draw.rect(gameDisplay,red,((coordinate[0] + 6),coordinate[1]+6,140,140)) 
 			button((coordinate[0] + 6),(coordinate[1]+6),140,140,red,draw_x)
 
 
